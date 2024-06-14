@@ -1,5 +1,8 @@
 <script>
-    import { todo } from '../stores/todoStore'
+    import tippy from 'tippy.js';
+    
+
+    import { todo } from '../stores/todoStore';
     import Card from './reusable/Card.svelte';
     import Button from './reusable/Button.svelte';
     import Checkbox from './reusable/Checkbox.svelte';
@@ -9,6 +12,10 @@
 
     let done = singleTask.done;
     let showModal = false;
+    let priority = "Weg damit"
+    let priorityColor = "#212121"
+
+    $: singleTask.important, singleTask.urgent, calculatePriority()
     
     // toggle Modal
     const handleShowModal = () => {
@@ -33,12 +40,30 @@
         todo.update((item) => item.filter((e) => e.id != singleTask.id))
     }
 
+    const calculatePriority = () => {
+        if(singleTask.important && singleTask.urgent) {
+            priority = "Sofort erledigen"
+            priorityColor = "#FF4C4C"
+        } else if (!singleTask.important && !singleTask.urgent){
+            priority = "Weg damit"
+            priorityColor = "#2D2D2D"
+        } else {
+            priority = singleTask.important ? "Einplanen und Wohlfühlen" : "Gib es ab"
+            priorityColor = "#FAD448"
+        }
+    }
+
 </script>
 
 <div class:done class="container">
     <Card>
         <Checkbox done={done} on:change={handleToggle}/>
         <input class:done disabled={!showModal} type="text" bind:value={singleTask.title} on:input={handleInput}>
+        <div title={priority} class="priority">
+            <svg enable-background="new 0 0 91.8 92.6" id="Layer_1" version="1.0" viewBox="0 0 91.8 92.6" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M45.9,3.6c-23.5,0-42.5,19-42.5,42.5c0,23.5,19,42.5,42.5,42.5c23.5,0,42.5-19,42.5-42.5  C88.4,22.7,69.4,3.6,45.9,3.6z M43.7,21.1h4.3c0.5,0,0.9,0.4,0.9,0.9l-0.6,34.5c0,0.5-0.4,0.9-0.9,0.9h-3c-0.5,0-0.9-0.4-0.9-0.9  L42.8,22C42.8,21.5,43.2,21.1,43.7,21.1z M48.6,71.2c-0.8,0.8-1.7,1.1-2.7,1.1c-1,0-1.9-0.3-2.6-1c-0.8-0.7-1.3-1.8-1.3-2.9  c0-1,0.4-1.9,1.1-2.7c0.7-0.8,1.8-1.2,2.9-1.2c1.2,0,2.2,0.5,3,1.4c0.5,0.6,0.8,1.3,0.9,2.1C49.9,69.3,49.5,70.3,48.6,71.2z" fill="{priorityColor}"/>
+            </svg>               
+        </div>
         <Button flat={true} on:click={handleShowModal}>
             <svg class:rotated={showModal} width="24" height="16" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.625 0L0 5.45455L15 20L30 5.45455L24.375 0L15 9.09091L5.625 0Z" fill="#FAD448"/>
@@ -78,6 +103,17 @@
 
     input.done {
         text-decoration: line-through;
+    }
+
+    .priority {
+        margin: 10px 10px;
+        padding: 0 10px;
+        height: 40px;
+    }
+
+    .priority > svg {
+        height: 25px;
+        margin: 7px 0;
     }
 
     .buttonIcon>path {
