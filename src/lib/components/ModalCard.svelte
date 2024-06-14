@@ -13,7 +13,7 @@
 <div class="modal">
     <form>
         <div class="column">
-            <textarea bind:value={singleTask.description} on:input={updateStore} name="" id="" placeholder="Description..."></textarea>
+            <textarea bind:value={singleTask.description} on:input={updateStore} name="description" id="description" maxlength=250 placeholder="Description..."></textarea>
 
             <div class="inline">
                 <label for="important">Wichtig:</label>
@@ -25,13 +25,13 @@
             </div>
             <div class="inline">
                 <label for="progress">Progress in %:</label>
-                <input bind:value={singleTask.progress} on:input={updateStore} id="progress" type="number" min="0" max="100">
-            </div>    
+                <input  type="number" bind:value={singleTask.progress} on:input={updateStore} id="progress" min=0 max=100>
+            </div>
         </div>
         <div class="column">
             <div class="inline">
                 <label for="author">Author:</label>
-                <input bind:value={singleTask.author} on:input={updateStore} id="author" type="text" placeholder="Author...">
+                <input bind:value={singleTask.author} on:input={updateStore} id="author" type="text" placeholder="Author..." maxlength="50">
             </div>
             <div class="inline">
                 <label for="category">Category:</label>
@@ -40,7 +40,8 @@
                     <option value="Sport">Sport</option>
                     <option value="Food">Food</option>
                     <option value="Health">Health</option>
-                    <option value="Study">Study</option>
+                    <option value="Lernen">Lernen</option>
+                    <option value="Reisen">Reisen</option>
                 </select>
             </div>
             <div class="inline">

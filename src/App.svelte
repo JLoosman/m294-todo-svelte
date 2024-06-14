@@ -53,7 +53,7 @@
     <div class="container">
       <form on:submit|preventDefault={handleAddTask}>
           <Card>
-              <input class="addTask" bind:value={newTask} type="text" placeholder="Add something new here..." required>
+              <input class="addTask" bind:value={newTask} type="text" placeholder="Add something new here..." required maxlength="50">
           </Card>
           <Button>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
