@@ -1,6 +1,4 @@
-<script>
-    import tippy from 'tippy.js';
-    
+<script>    
 
     import { todo } from '../stores/todoStore';
     import Card from './reusable/Card.svelte';
