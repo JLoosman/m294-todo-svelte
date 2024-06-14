@@ -62,7 +62,7 @@
       <Task singleTask={task}/>
   {:else}
       <Card>Nothing here...</Card>
-      <img src="/dino.png" alt="A cute dinosaur">
+      <img src="./dino.png" alt="A cute dinosaur">
   {/each}
 </section>
 

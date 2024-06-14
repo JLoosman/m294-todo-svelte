@@ -2,37 +2,37 @@
     import {todo} from '../stores/todoStore'
     export let singleTask = {}
 
-    $: if(singleTask) {
-        console.log($todo);
+    const updateStore = () => {
+        todo.update((item) => [...item])
     }
 </script>
 
 <div class="modal">
     <form>
         <div class="column">
-            <textarea bind:value={singleTask.description} name="" id="" placeholder="Description..."></textarea>
+            <textarea bind:value={singleTask.description} on:input={updateStore} name="" id="" placeholder="Description..."></textarea>
 
             <div class="inline">
                 <label for="important">Wichtig:</label>
-                <input bind:checked={singleTask.important} id="important" type="checkbox">
+                <input bind:checked={singleTask.important} on:change={updateStore} id="important" type="checkbox">
             </div>
             <div class="inline">
                 <label for="urgent">Dringend:</label>
-                <input bind:checked={singleTask.urgent} id="urgent" type="checkbox">
+                <input bind:checked={singleTask.urgent} on:change={updateStore} id="urgent" type="checkbox">
             </div>
             <div class="inline">
                 <label for="progress">Progress in %:</label>
-                <input bind:value={singleTask.progress} id="progress" type="number" min="0" max="100">
+                <input bind:value={singleTask.progress} on:input={updateStore} id="progress" type="number" min="0" max="100">
             </div>    
         </div>
         <div class="column">
             <div class="inline">
                 <label for="author">Author:</label>
-                <input bind:value={singleTask.author} id="author" type="text" placeholder="Author...">
+                <input bind:value={singleTask.author} on:input={updateStore} id="author" type="text" placeholder="Author...">
             </div>
             <div class="inline">
                 <label for="category">Category:</label>
-                <select bind:value={singleTask.category} name="category" id="category">
+                <select bind:value={singleTask.category} on:change={updateStore} name="category" id="category">
                     <option selected disabled value="Category">Category</option>
                     <option value="Sport">Sport</option>
                     <option value="Food">Food</option>
@@ -42,11 +42,11 @@
             </div>
             <div class="inline">
                 <label for="startDate">Start:</label>
-                <input bind:value={singleTask.startDate} id="startDate" type="date">
+                <input bind:value={singleTask.startDate} on:input={updateStore} id="startDate" type="date">
             </div>
             <div class="inline">
                 <label for="endDate">End:</label>
-                <input bind:value={singleTask.endDate} id="endDate" type="date">
+                <input bind:value={singleTask.endDate} on:input={updateStore} id="endDate" type="date">
             </div>
         </div>
     </form>

@@ -22,6 +22,10 @@
         todo.update((item) => [...item])
     }
 
+    const handleInput = () => {
+        todo.update((item) => [...item])
+    }
+
     const handleDelete = () => {
         todo.update((item) => item.filter((e) => e.id != singleTask.id))
     }
@@ -31,7 +35,7 @@
 <div class:done class="container">
     <Card>
         <Checkbox done={done} on:change={handleToggle}/>
-        <input class:done disabled={!showModal} type="text" bind:value={singleTask.title}>
+        <input class:done disabled={!showModal} type="text" bind:value={singleTask.title} on:input={handleInput}>
         <Button flat={true} on:click={handleShowModal}>
             <svg class:rotated={showModal} width="24" height="16" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.625 0L0 5.45455L15 20L30 5.45455L24.375 0L15 9.09091L5.625 0Z" fill="#FAD448"/>
