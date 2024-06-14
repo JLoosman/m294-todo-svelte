@@ -1,7 +1,10 @@
 <script>
     import {todo} from '../stores/todoStore'
+
     export let singleTask = {}
 
+    
+    // redeclare store when input is made
     const updateStore = () => {
         todo.update((item) => [...item])
     }

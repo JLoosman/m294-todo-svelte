@@ -1,8 +1,8 @@
 <script>
     import { todo } from '../stores/todoStore'
-    import Card from './Card.svelte';
-    import Button from './Button.svelte';
-    import Checkbox from './Checkbox.svelte';
+    import Card from './reusable/Card.svelte';
+    import Button from './reusable/Button.svelte';
+    import Checkbox from './reusable/Checkbox.svelte';
     import ModalCard from './ModalCard.svelte';
 
     export let singleTask = {}
@@ -10,6 +10,7 @@
     let done = singleTask.done;
     let showModal = false;
     
+    // toggle Modal
     const handleShowModal = () => {
         showModal = !showModal;
     }
@@ -22,11 +23,13 @@
         todo.update((item) => [...item])
     }
 
+    // redeclare store when input is made
     const handleInput = () => {
         todo.update((item) => [...item])
     }
 
     const handleDelete = () => {
+        // filtering out a object from the array
         todo.update((item) => item.filter((e) => e.id != singleTask.id))
     }
 
