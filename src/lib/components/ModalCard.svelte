@@ -1,4 +1,5 @@
 <script>
+    import { slide } from 'svelte/transition'
     import {todo} from '../stores/todoStore'
 
     export let singleTask = {}
@@ -10,7 +11,7 @@
     }
 </script>
 
-<div class="modal">
+<div transition:slide class="modal">
     <form>
         <div class="column">
             <textarea bind:value={singleTask.description} on:input={updateStore} name="description" id="description" maxlength=250 placeholder="Description..."></textarea>

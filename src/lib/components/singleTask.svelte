@@ -1,5 +1,4 @@
 <script>    
-
     import { todo } from '../stores/todoStore';
     import Card from './reusable/Card.svelte';
     import Button from './reusable/Button.svelte';
@@ -53,7 +52,7 @@
 
 </script>
 
-<div class:done class="container">
+<div  class:done class="container">
     <Card>
         <Checkbox done={done} on:change={handleToggle}/>
         <input class:done disabled={!showModal} type="text" bind:value={singleTask.title} on:input={handleInput} maxlength="50">

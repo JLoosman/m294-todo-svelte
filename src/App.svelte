@@ -1,5 +1,8 @@
 <script>
     import {v4 as uuidv4} from 'uuid'
+    import { flip } from 'svelte/animate'
+    import { fade } from 'svelte/transition'
+
     import { todo } from './lib/stores/todoStore.js'
     import Task from './lib/components/singleTask.svelte'
     import Card from './lib/components/reusable/Card.svelte'
@@ -65,10 +68,14 @@
     </div>
   
     {#each $todo as task (task.id)}
+    <div animate:flip={{duration: 500}}>
         <Task singleTask={task}/>
+    </div>
     {:else}
-        <Card>Nothing here...</Card>
-        <img src="./dino.png" alt="A cute dinosaur">
+        <div in:fade>
+            <Card>Nothing here...</Card>
+            <img src="./dino.png" alt="A cute dinosaur">
+        </div>
     {/each}
 </section>
 
