@@ -87,6 +87,13 @@
         text-align: center;
     }
 
+
+    @media screen and (max-width: 1300px) {
+        section {
+            width: 70%;
+        }
+    }
+
     .title {
         color: var(--primary-color);
         font-size: 70px;
