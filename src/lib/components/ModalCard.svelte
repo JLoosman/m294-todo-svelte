@@ -59,8 +59,7 @@
 <style>
     .modal {
         margin-right: 61.6px;
-        padding: 5px 20px;
-        height: 300px;
+        padding: 5px 20px 30px;
         border-radius: 10px;
         color: var(--white);
         background: var(--primary-color);
@@ -78,6 +77,17 @@
         padding: 20px 20px;
         height: 250px;
         width: 50%;
+    }
+
+    @media screen and (max-width: 750px) {
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column {
+            width: 100%;
+        }
     }
 
     .inline {
